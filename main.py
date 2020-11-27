@@ -1,23 +1,25 @@
-import json
-import re
+import argparse
+from DataLoader import load
 
-url_students = 'students.json'
-url_rooms = 'rooms.json'
 
-def get_json(url_rooms, url_students):
-    with open(url_rooms) as rooms_json:
-        rooms = json.loads(rooms_json.read())
-    with open(url_students) as students_json:
-        students = json.loads(students_json.read())
+class Handler:
+    def __init__(self):
+        pass
 
-    check(rooms, students)
 
-def check(rooms, students):
+def args_parser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('path_students', type=str, help='path to students.json')
+    parser.add_argument('path_rooms', type=str, help='path to rooms.json')
+    parser.add_argument('output_format', type=str, choices=['json', 'xml'], help='preferred output format')
+    args = parser.parse_args()
 
-    for i in range(len(students)):
-        room_name = re.search(r'#(\w+)', rooms[i].get('name'))
-        if students[i].get('room') ==  room_name.group(1):
-            pass
+    return args
 
-get_json(url_rooms, url_students)
+if __name__ == '__main__':
+    args = args_parser()
+    students = load(args.path_students)
+    rooms = load(args.path_rooms)
+
+
 

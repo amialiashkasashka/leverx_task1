@@ -2,6 +2,7 @@ import argparse
 from data_loader import FileLoader
 from typing import Dict, List
 from serializers import XMLSerializer
+from data_writer import SaverXML, SaverJSON
 
 
 class Solution:
@@ -34,17 +35,12 @@ def run():
 
 
     if args.output_format == 'json':
-
-        from data_writer import SaverJson
-        saver = SaverJson()
+        saver = SaverJSON()
         saver.save(data=data_merged, path='output', output_format='json')
         
     elif args.output_format == 'xml':
         xml_serializer = XMLSerializer()
         xml_serialized_data = xml_serializer.serialize(data_merged)
-
-
-        from data_writer import SaverXML
         saver = SaverXML()
         saver.save(data=xml_serialized_data, path='output', output_format='xml')
 

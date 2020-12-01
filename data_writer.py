@@ -10,7 +10,7 @@ class SaverABC(ABC):
         pass
 
 
-class SaverJson(SaverABC):
+class SaverJSON(SaverABC):
 
     def save(self, data, path, output_format):
         with open(f'{path}.{output_format}', 'w', encoding='utf-8') as f:

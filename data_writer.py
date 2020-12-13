@@ -22,11 +22,3 @@ class SaverXML(SaverABC):
     def save(self, data, path, output_format) -> None:
         with open(f'{path}.{output_format}', 'w', encoding='utf-8') as f:
             f.write(str(data))
-        
-
-
-
-
-
-
-

@@ -17,6 +17,3 @@ class FileLoader(LoaderABC):
                 return json.load(f)
         except FileNotFoundError:
             raise Exception(f'File not found {path}')
-
-
-

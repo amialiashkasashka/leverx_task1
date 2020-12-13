@@ -29,16 +29,16 @@ class Solution:
 def run():
 
     file_loader = FileLoader()
-    students = file_loader.load(args.path_students)
-    rooms = file_loader.load(args.path_rooms)
+    students = file_loader.load(__args.path_students)
+    rooms = file_loader.load(__args.path_rooms)
     data_merged = solution._merge_rooms_students(students, rooms)
 
 
-    if args.output_format == 'json':
+    if __args.output_format == 'json':
         saver = SaverJSON()
         saver.save(data=data_merged, path='output', output_format='json')
         
-    elif args.output_format == 'xml':
+    elif __args.output_format == 'xml':
         xml_serializer = XMLSerializer()
         xml_serialized_data = xml_serializer.serialize(data_merged)
         saver = SaverXML()
@@ -48,7 +48,7 @@ def run():
 
 if __name__ == '__main__':
     solution = Solution()
-    args = solution.args_parser()
+    __args = solution.args_parser()
 
     run()
 
